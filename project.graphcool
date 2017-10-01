@@ -1,0 +1,22 @@
+# project: cj7y28jzb1e3c0145s6zzwjie
+# version: 4
+
+type File implements Node {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  name: String!
+  secret: String! @isUnique
+  size: Int!
+  updatedAt: DateTime!
+  url: String! @isUnique
+}
+
+type User implements Node {
+  auth0UserId: String @isUnique
+  createdAt: DateTime!
+  email: String!
+  id: ID! @isUnique
+  name: String!
+  updatedAt: DateTime!
+}
