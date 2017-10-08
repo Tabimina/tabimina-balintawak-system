@@ -1,41 +1,58 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Aux from 'react-aux';
 import Helmet from 'react-helmet'
 import AppHeader from '../components/AppHeader'
 import styled from 'styled-components'
 
 import './index.css'
+const headerHeight = '50px';
+
+const TemplateContent = styled.div`
+  padding: 10px;
+`
 
 const Header = styled.header`
   position: fixed;
   top: 0;
-  width: 100%;
+  left: 0;
+  right: 0;
+  height: ${headerHeight};
 `
 
 const Content = styled.div`
-  padding-top: 325px;
+  padding-top: ${headerHeight};
+
+  // For testing only
+  height: 1000px;
 `
 
-const TemplateWrapper = ({ children }) => (
-  <div>
-    <Helmet
-      title="Tabimina Balintawak System"
-      meta={[
-        { name: 'description', content: 'Tabimina Balintawak System' },
-        { name: 'keywords', content: 'tabimina, balintawak, fma, escrima, kali, self-defense, fighting, survival' },
-      ]}
-    />
-    <Header>
-      <AppHeader />
-    </Header>
-    <Content>
-      {children()}
-    </Content>
-  </div>
-)
+class TemplateWrapper extends Component {
+  static propTypes = {
+    children: PropTypes.func,
+  }
 
-TemplateWrapper.propTypes = {
-  children: PropTypes.func,
+  render() {
+    return (
+      <TemplateContent>
+        <Helmet
+          title="Tabimina Balintawak System"
+          meta={[
+            { name: 'description', content: 'Tabimina Balintawak System' },
+            { name: 'keywords', content: 'tabimina, balintawak, fma, escrima, kali, self-defense, fighting, survival' },
+          ]}
+        />
+        <div>
+          <Header>
+            <AppHeader />
+          </Header>
+          <Content>
+            {this.props.children()}
+          </Content>
+        </div>
+      </TemplateContent>
+    )
+  }
 }
 
 export default TemplateWrapper
