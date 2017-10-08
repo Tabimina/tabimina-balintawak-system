@@ -23,7 +23,8 @@ const HeaderNav = styled.nav`
 `
 
 const HeaderLink = styled(Link)`
-  margin: 0 5px;
+  font-size: 1.395em;
+  margin: 0 7px;
 `
 
 const HeaderLogo = styled.img`
@@ -38,7 +39,7 @@ const HeaderSocialLinks = styled.div`
   margin-left: auto;
 `
 
-const HeaderSocialLink = styled(Link)`
+const HeaderSocialLink = styled.a`
   margin: 0 3px;
   width: 25px;
   height: 25px;
@@ -66,13 +67,13 @@ export default () => (
       </HeaderNav>
 
       <HeaderSocialLinks>
-        <HeaderSocialLink to="//www.facebook.com">
+        <HeaderSocialLink href="https://www.facebook.com/groups/81918470048/" target="_blank" rel="noopener">
           <HeaderSocialImg src={facebook} alt="Facebook" />
         </HeaderSocialLink>
-        <HeaderSocialLink to="//www.twitter.com">
+        <HeaderSocialLink href="https://twitter.com/TabiminaSystem" target="_blank" rel="noopener">
           <HeaderSocialImg src={twitter} alt="Twitter" />
         </HeaderSocialLink>
-        <HeaderSocialLink to="//www.instagram.com">
+        <HeaderSocialLink href="https://www.instagram.com/tabimina_balintawak" target="_blank" rel="noopener">
           <HeaderSocialImg src={instagram} alt="Instagram" />
         </HeaderSocialLink>
       </HeaderSocialLinks>

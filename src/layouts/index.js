@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Aux from 'react-aux';
+import Aux from 'react-aux'
 import Helmet from 'react-helmet'
 import AppHeader from '../components/AppHeader'
 import styled from 'styled-components'
 
 import './index.css'
-const headerHeight = '50px';
+const headerHeight = '50px'
 
 const TemplateContent = styled.div`
-  padding: 10px;
 `
 
 const Header = styled.header`
@@ -18,13 +17,11 @@ const Header = styled.header`
   left: 0;
   right: 0;
   height: ${headerHeight};
+  z-index: 100;
 `
 
 const Content = styled.div`
   padding-top: ${headerHeight};
-
-  // For testing only
-  height: 1000px;
 `
 
 class TemplateWrapper extends Component {
@@ -46,6 +43,7 @@ class TemplateWrapper extends Component {
           <Header>
             <AppHeader />
           </Header>
+
           <Content>
             {this.props.children()}
           </Content>
