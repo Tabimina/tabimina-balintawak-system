@@ -6,6 +6,7 @@ import logo from '../assets/logo.png'
 import facebook from '../assets/facebook.png'
 import twitter from '../assets/twitter.png'
 import instagram from '../assets/instagram.png'
+import ms from '../layouts/typography'
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -23,8 +24,8 @@ const HeaderNav = styled.nav`
 `
 
 const HeaderLink = styled(Link)`
-  font-size: 1.395em;
-  margin: 0 7px;
+  font-size: ${ms(3)};
+  margin: 0 0.2em;
 `
 
 const HeaderLogo = styled.img`
@@ -57,9 +58,6 @@ export default () => (
       <HeaderNav>
         <HeaderLink to="/">
           Home
-        </HeaderLink>
-        <HeaderLink to="/about">
-          About
         </HeaderLink>
         <HeaderLink to="/blog">
           Blog

@@ -14,8 +14,6 @@ const Button = styled.button`
   }
 
   &:active {
-    background-color: white;
-    color: black;
     transform: scale(0.95);
   }
 `

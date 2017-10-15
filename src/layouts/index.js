@@ -5,6 +5,7 @@ import Helmet from 'react-helmet'
 import AppHeader from '../components/AppHeader'
 import styled from 'styled-components'
 
+// import './colors.css'
 import './index.css'
 const headerHeight = '50px'
 
