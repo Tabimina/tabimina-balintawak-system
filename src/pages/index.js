@@ -23,6 +23,7 @@ const HeroImg = styled.img`
   right: 0;
   top: 0;
   z-index: -1;
+  width: 100%;
 `
 
 const HeroButton = styled(Button)`
