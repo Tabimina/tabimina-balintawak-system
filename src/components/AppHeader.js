@@ -1,80 +1,131 @@
 import React from 'react'
-import Aux from 'react-aux';
 import styled from 'styled-components'
-import Link from 'gatsby-link'
+import { Link } from 'gatsby'
 import logo from '../assets/logo.png'
 import facebook from '../assets/facebook.png'
 import twitter from '../assets/twitter.png'
 import instagram from '../assets/instagram.png'
-import ms from '../layouts/typography'
+import ms from '../pages/typography'
+import { BrowserConsumer } from '../context/BrowserContext'
+import { viewportWidthLarge } from '../constants'
 
-const HeaderWrapper = styled.div`
+const Wrapper = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 10px;
-  color: #000;
-  background-color: #FFF;
+  padding: 5px;
+  background: linear-gradient(black, transparent);
+  transition: background 1s;
+
+  &.large {
+    background: transparent;
+    padding: 10px;
+  }
 `
 
-const HeaderNav = styled.nav`
+const NavSection = styled.div`
+  width: 100%;
+`
+
+const Nav = styled.nav`
   display: flex;
+  justify-content: flex-start;
   align-items: center;
 `
 
 const HeaderLink = styled(Link)`
-  font-size: ${ms(3)};
-  margin: 0 0.2em;
-`
-
-const HeaderLogo = styled.img`
-  margin-right: 10px;
-  height: 40px;
-`
-
-const HeaderSocialLinks = styled.div`
+  flex: 1;
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-left: auto;
+  justify-content: center;
+  font-size: ${ms(0)};
+  margin: 0 0.2em;
+  color: black;
+  background: white;
+  border: 1px solid white;
+  max-width: 75px;
+  height: 25px;
+  font-weight: bold;
+
+  &.active {
+    background: black;
+    color: white;
+  }
 `
 
-const HeaderSocialLink = styled.a`
+const Logo = styled.img`
+  margin-right: 10px;
+  height: 30px;
+  transition: all 0.3s;
+
+  &.large {
+    height: 60px;
+  }
+`
+
+const SocialLinks = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 10px;
+`
+
+const SocialLink = styled.a`
   margin: 0 3px;
   width: 25px;
   height: 25px;
 `
 
-const HeaderSocialImg = styled.img`
+const SocialImg = styled.img`
   width: 100%;
   height: 100%;
 `
 
-export default () => (
-  <Aux>
-    <HeaderWrapper>
-      <HeaderLogo src={logo} alt="Tabimina Balintawak System Logo" />
-      <HeaderNav>
-        <HeaderLink to="/">
-          Home
-        </HeaderLink>
-        <HeaderLink to="/blog">
-          Blog
-        </HeaderLink>
-      </HeaderNav>
+const headLinks = [
+  { name: 'Home', to: '/' },
+  { name: 'About', to: '/about' },
+  { name: 'News', to: '/news' },
+  { name: 'Blog', to: '/blog' },
+]
 
-      <HeaderSocialLinks>
-        <HeaderSocialLink href="https://www.facebook.com/groups/81918470048/" target="_blank" rel="noopener">
-          <HeaderSocialImg src={facebook} alt="Facebook" />
-        </HeaderSocialLink>
-        <HeaderSocialLink href="https://twitter.com/TabiminaSystem" target="_blank" rel="noopener">
-          <HeaderSocialImg src={twitter} alt="Twitter" />
-        </HeaderSocialLink>
-        <HeaderSocialLink href="https://www.instagram.com/tabimina_balintawak" target="_blank" rel="noopener">
-          <HeaderSocialImg src={instagram} alt="Instagram" />
-        </HeaderSocialLink>
-      </HeaderSocialLinks>
-    </HeaderWrapper>
-  </Aux>
-)
+const socialLinks = () =>
+  <SocialLinks>
+    <SocialLink href="https://www.facebook.com/groups/81918470048/" target="_blank" rel="noopener">
+      <SocialImg src={facebook} alt="Facebook" />
+    </SocialLink>
+    <SocialLink href="https://twitter.com/TabiminaSystem" target="_blank" rel="noopener">
+      <SocialImg src={twitter} alt="Twitter" />
+    </SocialLink>
+    <SocialLink href="https://www.instagram.com/tabimina_balintawak" target="_blank" rel="noopener">
+      <SocialImg src={instagram} alt="Instagram" />
+    </SocialLink>
+  </SocialLinks>
+
+export default props =>
+  <BrowserConsumer>
+    {
+      ({ isScrolling, viewportWidth }) => {
+        const isLarge = !isScrolling && viewportWidth > viewportWidthLarge
+        const className = isLarge ? 'large' : ''
+
+        return (
+          <Wrapper className={className}>
+            <Logo src={logo} className={className} alt="Tabimina Balintawak Logo" />
+
+            <NavSection>
+              {isLarge ? socialLinks() : ''}
+
+              <Nav>
+                {headLinks.map(link =>
+                  <HeaderLink to={link.to} key={link.name} exact={true} activeClassName="active">
+                    {link.name}
+                  </HeaderLink>
+                )}
+              </Nav>
+            </NavSection>
+          </Wrapper>
+        )
+      }
+    }
+  </BrowserConsumer>

@@ -1,29 +1,28 @@
 import React, { Component } from 'react'
-import Link from 'gatsby-link'
 import styled from 'styled-components'
 import hero from '../assets/hero.jpg'
-import ms from '../layouts/typography'
+import ms from '../pages/typography'
 import Button from '../components/Button'
-import {
-  ParallaxContainer,
-  ParallaxSection,
-} from '../components/Parallax'
-import colors from '../layouts/colors'
+import Layout from '../components/Layout'
+import colors from './colors'
+import { BrowserConsumer } from '../context/BrowserContext'
+import { viewportWidthLarge } from '../constants'
+import './index.css'
 
-const HeroImgHeight = '320px'
-
-// const HeroSection = styled(ParallaxSection)`
 const HeroSection = styled.div`
-  position: relative;
-  padding: 7vw;
+  padding: 0 7vw;
 `
 const HeroImg = styled.img`
   position: absolute;
   left: 0;
   right: 0;
-  top: 0;
+  top: 50px;
   z-index: -1;
   width: 100%;
+
+  &.large {
+    top: 0;
+  }
 `
 
 const HeroButton = styled(Button)`
@@ -33,6 +32,15 @@ const HeroButton = styled(Button)`
 
 const HeroTitle = styled.h1`
   color: white;
+`
+
+const Content = styled.div`
+  background: white;
+  padding: 10px 0;
+
+  section + section {
+    margin-top: 10px;
+  }
 `
 
 const TabiminaTitle = styled.div`
@@ -47,101 +55,63 @@ const BalintawakTitle = styled.div`
 `
 
 const Section = styled.section`
-  height: 500px;
-`
-
-const AboutSection = styled.div`
+  position: sticky;
+  top: 0;
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  height: 250px;
   background: black;
-  opacity: 0.9;
-`
+  padding: 10px;
 
-const AboutContent = styled.div`
-  max-width: 450px;
-  color: white;
-  padding: 100px 40px 40px 40px;
-`
-
-const AboutContentTitle = styled.h2`
-  font-size: ${ms(10)};
-`
-
-const AboutContentParagraph = styled.p`
-  margin: 20px 0;
-  font-size: ${ms(0)};
-`
-
-const SystemSection = styled(Section)`
-  display: flex;
-  flex-wrap: wrap;
-`
-
-const SystemPanel = styled.div`
-  flex: 1 0 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  background: ${colors.arsenic};
-  color: white;
-  font-size: ${ms(5)};
-  cursor: pointer;
-
-  &::after {
-    content: '';
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: ${colors.lightRed};
-    opacity: 0.6;
-  }
-
-  &:hover {
-    &::after {
-      display: block;
-    }
+  @media (min-width: ${viewportWidthLarge}px) {
+    height: 350px;
   }
 `
 
-const SystemPanelTitle = styled.h2`
+const SectionTitle = styled.h1`
+  justify-self: center;
+  align-self: flex-end;
+  color: white;
+  font-size: 1.75em;
+  font-weight: 100;
+  text-transform: uppercase;
   text-align: center;
+
+  &.right {
+    grid-column: 2;
+  }
 `
 
-const Header = styled.header`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 50px;
-  height: 35px;
-  width: 100vw;
-  background: rgba(37, 33, 40, 0.7);
-  padding: 7px;
-  z-index: 99;
+const FontWeightBold = styled.span`
+  font-weight: 900;
 `
 
-const HeaderLink = styled(Link)`
-  font-size: ${ms(2)};
+const SectionContent = styled.div`
+  grid-row: 2;
+  justify-self: center;
+  align-self: flex-start;
   color: white;
-  margin: 5px;
-  font-weight: bold;
+  padding: 0.75em;
+  max-width: 350px;
+
+  &.right {
+    grid-column: 2;
+  }
+
+  @media (min-width: ${viewportWidthLarge}px) {
+    padding: 1.75em;
+  }
 `
 
-const Something = styled.div`
-  width: 100%;
-  height: 300px;
-  background: ${colors.lightRed};
-`
-
-const Hero = () => (
+const Hero = ({ isLarge }) => (
   <HeroSection>
-    <HeroImg src={hero} />
+    <HeroImg src={hero} className={isLarge ? 'large' : ''} />
 
     <HeroTitle>
       <TabiminaTitle>TABIMINA</TabiminaTitle>
-      <BalintawakTitle>BALINTAWAK SYSTEM</BalintawakTitle>
+      <BalintawakTitle>BALINTAWAK</BalintawakTitle>
     </HeroTitle>
 
     <HeroButton>
@@ -150,88 +120,71 @@ const Hero = () => (
   </HeroSection>
 )
 
-const About = () => (
-  <AboutSection url={hero}>
-    <AboutContent>
-      <AboutContentTitle>
-        BOB "SILVER" TABIMINA
-      </AboutContentTitle>
-
-      <AboutContentParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare mi sit amet dignissim
-        ullamcorper. Vivamus posuere eget massa quis porta. Ut suscipit sit amet ex nec placerat. Nam in
-        massa pellentesque, sagittis mauris vel, lacinia nisl. Nullam vestibulum, orci in lobortis
-        commodo, felis ex varius purus, non finibus nibh quam et purus. Sed mollis tincidunt vulputate. F
-        usce risus lectus, faucibus a augue eu, laoreet viverra nisl. Class aptent taciti sociosqu
-        ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum nec tempus tortor.
-        Suspendisse scelerisque convallis mauris sed porta. Donec sed consectetur justo, in mollis elit.
-      </AboutContentParagraph>
-
-      <AboutContentParagraph>
-        Sed et venenatis risus, sed pretium metus. Donec dapibus ullamcorper tortor a finibus. Suspendisse
-        vel orci consequat, molestie sem sed, vehicula nulla. Phasellus congue, lorem in pellentesque
-        pellentesque, erat nisi condimentum dui, in luctus est nisl eget dolor. Nulla faucibus mauris
-        magna, eu egestas libero commodo at. Nam suscipit tortor leo, pharetra sollicitudin turpis
-        vehicula nec. Sed consequat tristique elit eget malesuada. Aenean ac magna pellentesque, consectetur
-        neque ut, lacinia dui. Etiam molestie turpis mauris, in vestibulum quam maximus in.
-      </AboutContentParagraph>
-    </AboutContent>
-  </AboutSection>
-)
-
-const System = () => (
-  <SystemSection>
-    <SystemPanel>
-      <SystemPanelTitle>ZERO MIND</SystemPanelTitle>
-    </SystemPanel>
-    <SystemPanel>
-      <SystemPanelTitle>STICK</SystemPanelTitle>
-    </SystemPanel>
-    <SystemPanel>
-      <SystemPanelTitle>BOXING</SystemPanelTitle>
-    </SystemPanel>
-    <SystemPanel>
-      <SystemPanelTitle>FORCE MULTIPLIERS</SystemPanelTitle>
-    </SystemPanel>
-  </SystemSection>
-)
-
 export default class IndexPage extends Component {
   render() {
     return (
-      <div>
-        <Header>
-          <HeaderLink to='#system'>
-            System
-          </HeaderLink>
+      <Layout>
+        <BrowserConsumer>
+          {
+            ({ viewportWidth }) => {
+              const isLarge = viewportWidth > 500
 
-          <HeaderLink to='#about'>
-            About
-          </HeaderLink>
+              return (
+                <>
+                  <Hero isLarge={isLarge} />
 
-          <HeaderLink to='#something'>
-            Something
-          </HeaderLink>
-        </Header>
+                  <Content>
+                    <Section>
+                      <SectionTitle>
+                        <FontWeightBold>Zero</FontWeightBold> Mind
+                      </SectionTitle>
 
-        <ParallaxContainer>
-          <section>
-            <Hero />
-          </section>
+                      <SectionContent>
+                        <FontWeightBold>Tabimina Balintawak</FontWeightBold> is the only art that would teach how to achieve the zero mind
+                        state. This is the missing link of every martial arts.
+                      </SectionContent>
+                    </Section>
 
-          <section id="system">
-            <System />
-          </section>
+                    <Section>
+                      <SectionTitle className="right">
+                        <FontWeightBold>Stick</FontWeightBold> Fighting
+                      </SectionTitle>
 
-          <section id="about">
-            <About />
-          </section>
+                      <SectionContent className="right">
+                        <FontWeightBold>Tabimina Balintawak</FontWeightBold> uses a single 'olisi' as the training tool to bring out the necessary
+                        reaction, which are innate within the human body.
+                      </SectionContent>
+                    </Section>
 
-          <section id="something">
-            <Something />
-          </section>
-        </ParallaxContainer>
-      </div>
+                    <Section>
+                      <SectionTitle>
+                        <FontWeightBold>Bare Hands</FontWeightBold> Boxing
+                      </SectionTitle>
+
+                      <SectionContent>
+                        <FontWeightBold>Tabimina Balintawak</FontWeightBold> teaches how the movements are translated from stick fighting to bare hands and
+                        boxing, neutralizing your opponent in the most expeditious manner.
+                      </SectionContent>
+                    </Section>
+
+                    <Section>
+                      <SectionTitle className="right">
+                        <FontWeightBold>Force</FontWeightBold> Multipliers
+                      </SectionTitle>
+
+                      <SectionContent className="right">
+                        <FontWeightBold>Tabimina Balintawak</FontWeightBold> teaches knife fighting, dulo-dulo or any force multipliers. The key is
+                        adaptation to the weapon at hand. This is made possible thru the core teaching of the
+                        stick art of Tabimina Balintawak.
+                      </SectionContent>
+                    </Section>
+                  </Content>
+                </>
+              )
+            }
+          }
+        </BrowserConsumer>
+      </Layout>
     )
   }
 }

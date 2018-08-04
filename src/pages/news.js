@@ -1,10 +1,10 @@
 import React from 'react'
 import Layout from '../components/Layout'
 
-const BlogPage = () => (
+const NewsPage = () => (
   <Layout>
-    <h1>Blog</h1>
+    <h1>News</h1>
   </Layout>
 )
 
-export default BlogPage
+export default NewsPage
