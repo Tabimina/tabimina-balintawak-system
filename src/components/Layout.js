@@ -4,17 +4,14 @@ import Helmet from 'react-helmet'
 import AppHeader from '../components/AppHeader'
 import AppFooter from '../components/AppFooter'
 import styled from 'styled-components'
-import {
-  BrowserProvider,
-  BrowserConsumer
-} from '../context/BrowserContext'
+import BrowserProvider, { BrowserConsumer } from '../context/BrowserContext'
 import {
   viewportWidthLarge,
   headerHeight,
   headerHeightLarge
 } from '../constants'
 
-const TemplateContent = styled.div``
+const LayoutContent = styled.div``
 
 const Header = styled.header`
   position: fixed;
@@ -32,7 +29,7 @@ const Header = styled.header`
   }
 `
 
-const Content = styled.main`
+const Main = styled.main`
   transition: padding-top 0.3s;
   padding-top: ${headerHeight}px;
 
@@ -48,21 +45,21 @@ const Footer = styled.footer`
   height: 200px;
 `
 
-class TemplateWrapper extends Component {
+class Layout extends Component {
   static propTypes = {
-    children: PropTypes.array,
+    children: PropTypes.node.isRequired,
   }
 
   render() {
     return (
-      <TemplateContent>
-        <Helmet
-          title="Tabimina Balintawak"
-          meta={[
-            { name: 'description', content: 'Tabimina Balintawak' },
-            { name: 'keywords', content: 'tabimina, balintawak, fma, escrima, kali, self-defense, fighting, survival' },
-          ]}
-        />
+      <LayoutContent>
+        <Helmet>
+          <title>Tabimina Balintawak</title>
+          <meta name="description" content="Tabimina Balintawak" />
+          <meta name="keywords" content="tabimina, balintawak, fma, escrima, kali, self-defense, fighting, survival" />
+          <link href="https://fonts.googleapis.com/css?family=Raleway:100,400,900" rel="stylesheet" />
+        </Helmet>
+
         <BrowserProvider>
           <BrowserConsumer>
             {
@@ -75,9 +72,9 @@ class TemplateWrapper extends Component {
                       <AppHeader />
                     </Header>
 
-                    <Content className={scrollingClass}>
+                    <Main className={scrollingClass}>
                       {this.props.children}
-                    </Content>
+                    </Main>
 
                     <Footer>
                       <AppFooter />
@@ -88,9 +85,9 @@ class TemplateWrapper extends Component {
             }
           </BrowserConsumer>
         </BrowserProvider>
-      </TemplateContent>
+      </LayoutContent>
     )
   }
 }
 
-export default TemplateWrapper
+export default Layout

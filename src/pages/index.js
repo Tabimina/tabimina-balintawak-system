@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import hero from '../assets/hero.jpg'
-import ms from '../pages/typography'
+import ms from './typography'
 import Button from '../components/Button'
 import Layout from '../components/Layout'
-import colors from './colors'
 import { BrowserConsumer } from '../context/BrowserContext'
 import { viewportWidthLarge, headerHeightLarge } from '../constants'
 import './index.css'
@@ -62,7 +61,7 @@ const TabiminaTitle = styled.div`
 const BalintawakTitle = styled.div`
   font-size: ${ms(7)};
   font-weight: 100;
-  margin-top: -15px;
+  margin-top: -10px;
 `
 
 const Section = styled.section`

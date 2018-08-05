@@ -1,28 +1,41 @@
 import React from 'react'
 import styled from 'styled-components'
+import SocialLinks from './SocialLinks'
+import Logo from './Logo'
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 3fr 1fr 1fr;
+  justify-content: center;
+  align-items: center;
   height: 100%;
 `
 
-const Copyright = styled.div`
-  margin-top: auto;
-  text-align: center;
+const StyledSocialLinks = styled(SocialLinks)`
+  grid-row: 2/3;
+  justify-content: center;
 `
 
-const Content = styled.div`
-  flex: 1;
+const Copyright = styled.span`
+  grid-row: 3/4;
+  margin: 10px 0;
+  `
+
+const Bottom = styled.div`
+  grid-row: 2/3;
+`
+
+const StyledLogo = styled(Logo)`
+  height: 60px;
 `
 
 export default props =>
   <Wrapper>
-    <Content>
-      <div>Contact Us</div>
-    </Content>
+    <StyledLogo />
+
+    <StyledSocialLinks />
 
     <Copyright>
-      <span>Copyright &copy; {new Date().getFullYear()}</span>
+      Copyright &copy; {new Date().getFullYear()}
     </Copyright>
   </Wrapper>
