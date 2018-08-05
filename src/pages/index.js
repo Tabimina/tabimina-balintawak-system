@@ -10,7 +10,6 @@ import './index.css'
 
 const HeroSection = styled.div`
   position: relative;
-  z-index: -1;
   margin-top: 0;
 
   &.large {
