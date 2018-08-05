@@ -7,7 +7,7 @@ export { BrowserConsumer }
 export class BrowserProvider extends React.Component {
   state = {
     isScrolling: false,
-    viewportWidth: window.innerWidth,
+    viewportWidth: null,
   }
 
   componentDidMount() {

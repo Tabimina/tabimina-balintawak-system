@@ -6,23 +6,34 @@ import Button from '../components/Button'
 import Layout from '../components/Layout'
 import colors from './colors'
 import { BrowserConsumer } from '../context/BrowserContext'
-import { viewportWidthLarge } from '../constants'
+import { viewportWidthLarge, headerHeightLarge } from '../constants'
 import './index.css'
 
 const HeroSection = styled.div`
-  padding: 0 7vw;
-`
-const HeroImg = styled.img`
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50px;
+  position: relative;
   z-index: -1;
-  width: 100%;
+  margin-top: 0;
 
   &.large {
-    top: 0;
+    margin-top: -${headerHeightLarge}px;
   }
+`
+
+const HeroContent = styled.div`
+  position: absolute;
+  top: 0;
+  padding: 0 2em;
+  font-size: 0.75em;
+
+  &.large {
+    top: ${headerHeightLarge}px;
+    font-size: 1em;
+  }
+`
+
+const HeroImg = styled.img`
+  width: 100%;
+  height: 100%;
 `
 
 const HeroButton = styled(Button)`
@@ -55,8 +66,6 @@ const BalintawakTitle = styled.div`
 `
 
 const Section = styled.section`
-  position: sticky;
-  top: 0;
   display: grid;
   grid-template-rows: 1fr 3fr;
   grid-template-columns: 1fr 1fr;
@@ -105,20 +114,26 @@ const SectionContent = styled.div`
   }
 `
 
-const Hero = ({ isLarge }) => (
-  <HeroSection>
-    <HeroImg src={hero} className={isLarge ? 'large' : ''} />
+const Hero = ({ isLarge }) => {
+  const largeClass = isLarge ? 'large' : ''
 
-    <HeroTitle>
-      <TabiminaTitle>TABIMINA</TabiminaTitle>
-      <BalintawakTitle>BALINTAWAK</BalintawakTitle>
-    </HeroTitle>
+  return (
+    <HeroSection className={largeClass}>
+      <HeroImg src={hero} />
 
-    <HeroButton>
-      Join Now
-    </HeroButton>
-  </HeroSection>
-)
+      <HeroContent className={largeClass}>
+        <HeroTitle>
+          <TabiminaTitle>TABIMINA</TabiminaTitle>
+          <BalintawakTitle>BALINTAWAK</BalintawakTitle>
+        </HeroTitle>
+
+        <HeroButton>
+          Join Now
+        </HeroButton>
+      </HeroContent>
+    </HeroSection>
+  )
+}
 
 export default class IndexPage extends Component {
   render() {
@@ -127,7 +142,7 @@ export default class IndexPage extends Component {
         <BrowserConsumer>
           {
             ({ viewportWidth }) => {
-              const isLarge = viewportWidth > 500
+              const isLarge = viewportWidth > viewportWidthLarge
 
               return (
                 <>

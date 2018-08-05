@@ -85,7 +85,7 @@ const SocialImg = styled.img`
 const headLinks = [
   { name: 'Home', to: '/' },
   { name: 'About', to: '/about' },
-  { name: 'News', to: '/news' },
+  // { name: 'News', to: '/news' },
   { name: 'Blog', to: '/blog' },
 ]
 
