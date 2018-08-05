@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import hero from '../assets/hero.jpg'
-import ms from './typography'
+import ms from '../typography'
 import Button from '../components/Button'
 import Layout from '../components/Layout'
 import { BrowserConsumer } from '../context/BrowserContext'

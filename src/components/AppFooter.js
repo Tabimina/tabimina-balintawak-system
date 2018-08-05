@@ -21,10 +21,6 @@ const Copyright = styled.span`
   margin: 10px 0;
   `
 
-const Bottom = styled.div`
-  grid-row: 2/3;
-`
-
 const StyledLogo = styled(Logo)`
   height: 60px;
 `

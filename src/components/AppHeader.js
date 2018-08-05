@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 import Logo from './Logo'
 import SocialLinks from './SocialLinks'
-import ms from '../pages/typography'
+import ms from '../typography'
 import { BrowserConsumer } from '../context/BrowserContext'
 import { viewportWidthLarge } from '../constants'
 
