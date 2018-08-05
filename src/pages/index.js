@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import hero from '../assets/hero.jpg'
 import ms from '../typography'
-import Button from '../components/Button'
+import JoinButton from '../components/JoinButton'
+import SignInButton from '../components/SignInButton'
 import Layout from '../components/Layout'
 import { BrowserConsumer } from '../context/BrowserContext'
 import { viewportWidthLarge, headerHeightLarge } from '../constants'
@@ -34,9 +35,18 @@ const HeroImg = styled.img`
   height: 100%;
 `
 
-const HeroButton = styled(Button)`
-  font-size: ${ms(4)};
+const AuthButtons = styled.div`
+  display: flex;
   margin: 20px 0;
+`
+
+const HeroJoinButton = styled(JoinButton)`
+  font-size: ${ms(4)};
+  padding: 5px 10px;
+`
+
+const HeroSignInbutton = styled(SignInButton)`
+  padding: 5px 10px;
 `
 
 const HeroTitle = styled.h1`
@@ -125,9 +135,10 @@ const Hero = ({ isLarge }) => {
           <BalintawakTitle>BALINTAWAK</BalintawakTitle>
         </HeroTitle>
 
-        <HeroButton>
-          Join Now
-        </HeroButton>
+        <AuthButtons>
+          <HeroJoinButton />
+          <HeroSignInbutton />
+        </AuthButtons>
       </HeroContent>
     </HeroSection>
   )
