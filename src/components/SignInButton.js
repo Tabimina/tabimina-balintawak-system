@@ -8,6 +8,10 @@ const SignInButton = styled.button`
   transition: transform 0.2s;
   will-change: transform;
 
+  &:focus {
+    outline: none;
+  }
+
   &:hover {
     transform: scale(1.1);
   }

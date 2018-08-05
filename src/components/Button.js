@@ -7,6 +7,10 @@ const Button = styled.button`
   color: white;
   transition: all 0.3s ease-in-out;
 
+  &:focus {
+    outline: none;
+  }
+
   &:hover,
   &:focus {
     box-shadow: 0 0 0 0.125em white;
@@ -14,6 +18,7 @@ const Button = styled.button`
 
   &:active {
     transform: scale(0.95);
+    outline: none;
   }
 `
 
