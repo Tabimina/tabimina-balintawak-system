@@ -57,6 +57,7 @@ class Layout extends Component {
           <title>Tabimina Balintawak</title>
           <meta name="description" content="Tabimina Balintawak" />
           <meta name="keywords" content="tabimina, balintawak, fma, escrima, kali, self-defense, fighting, survival" />
+          <meta name="robots" content="noindex,nofollow" />
           <link href="https://fonts.googleapis.com/css?family=Raleway:100,400,900" rel="stylesheet" />
         </Helmet>
 
